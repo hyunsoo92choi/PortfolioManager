@@ -1,8 +1,11 @@
 package com.hschoi.portfolio;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * <pre>
@@ -11,8 +14,13 @@ import org.springframework.context.annotation.ComponentScan;
  * @date : 2019. 6. 14.
  * @author : hychoi
  */
-@ComponentScan("com.hschoi")
-@SpringBootApplication
+
+@Configuration
+@ComponentScan(basePackages="com.hschoi.common")
+@EnableAutoConfiguration
+@EnableJpaRepositories(basePackages="com.hschoi.common")
+@EntityScan(basePackages="com.hschoi.*")
+//@SpringBootApplication
 public class PortfolioManagerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PortfolioManagerApplication.class, args);
