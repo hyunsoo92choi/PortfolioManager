@@ -34,10 +34,10 @@ import lombok.NoArgsConstructor;
  * 하나의 사용자는 다수의 프로젝트를 등록 할 수 있음 (One to Many)
  * </pre>
  * @date : 2019. 6. 18.
- * @author : hychoi
+ * @author : hychoi.
  */
 @Entity
-@Table( name="user")
+@Table(name="user")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 	
