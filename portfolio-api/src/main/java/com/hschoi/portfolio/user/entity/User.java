@@ -1,45 +1,70 @@
 package com.hschoi.portfolio.user.entity;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.hschoi.common.exception.PasswordConfirmNotMatching;
+import com.hschoi.portfolio.projects.entity.Project;
 import com.hschoi.portfolio.user.dto.UserDto;
 
 import lombok.AccessLevel;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
  * <pre>
  * com.hschoi.portfolio.user.entity_UserEntity.java
+ * 사용자는 중복가입을 허용하지 않음
+ * 하나의 사용자는 다수의 프로젝트를 등록 할 수 있음 (One to Many)
  * </pre>
  * @date : 2019. 6. 18.
  * @author : hychoi
  */
 @Entity
-@Data
+@Table( name="user")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class UserEntity {
+public class User {
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-	@Id
-	@Column
+	
+	@Column(nullable = false, unique = true)
 	private String userEmail;
 	
-	@Column
+	@Column(nullable = false)
 	@NotEmpty(message="비밀번호을 입력해주세요.")
 	private String userPassword;
 	
-	public UserEntity(String userEmail, String userPassword) {
+	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)
+	private List<Project> projects = new ArrayList<>();
+	
+	@CreatedDate
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    @LastModifiedDate
+    @Column(name = "update_at", nullable = false, updatable = false)
+    private LocalDateTime updatedAt = LocalDateTime.now();
+	
+	public User(String userEmail, String userPassword) {
 		this.userEmail = userEmail;
 		this.userPassword = userPassword;
 	}
@@ -72,6 +97,7 @@ public class UserEntity {
     	if (!passwordEncoder.matches(inputPassword, userPassword)) {
             throw new PasswordConfirmNotMatching("Password is not Matching");
         }
-        return true;
+        
+    	return true;
     }
 }

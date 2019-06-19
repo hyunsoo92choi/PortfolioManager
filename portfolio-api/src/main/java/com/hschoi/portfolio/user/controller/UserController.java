@@ -25,21 +25,66 @@ import com.hschoi.portfolio.user.service.UserService;
 @RestController
 @RequestMapping("/api/v1/user")
 public class UserController {
-
-	private final Logger log = LoggerFactory.getLogger(UserController.class);
-
-	private final UserService userService;
-
-	public UserController(UserService userService) {
-		this.userService = userService;
-	}
 	
+	private final Logger log = LoggerFactory.getLogger(UserController.class);
+	private final UserService userService;
+	
+	public UserController(UserService userService) {
+        this.userService = userService;
+    }
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 회원가입 
+	 * 2. 처리내용 : UserDto에 담긴 회원 정보를 이용하여 회원 가입 서비스를 제공하는 컨트롤러
+	 * </pre>
+	 * @Method Name : register
+	 * @date : 2019. 6. 19.
+	 * @author : hychoi
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 6. 19.		hychoi				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * 
+	 * @param userDto
+	 * @return ResponseEntity<UserDto>
+	 */ 	
 	@PostMapping("/sign")
     public ResponseEntity<UserDto> register(@Valid @RequestBody UserDto userDto) {
         
-		log.debug("회원가입 : {}", userDto);
+		log.info("회원가입 : {}", userDto);
+		
         UserDto user = userService.register(userDto);
         
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 로그인
+	 * 2. 처리내용 : UserDto에 담긴 회원 정보를 이용하여 로그인 서비스를 제공하는 컨트롤러
+	 * </pre>
+	 * @Method Name : userLogin
+	 * @date : 2019. 6. 19.
+	 * @author : hychoi
+	 * @history : ResponseEntity<UserDto>
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 6. 19.		hychoi				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * 
+	 * @param userDto
+	 * @return
+	 */ 	
+	@PostMapping("/login")
+	public ResponseEntity<UserDto> userLogin(@Valid @RequestBody UserDto userDto) {
+		
+		log.info("로그인 : {}", userDto);
+		UserDto loginUser = userService.login(userDto.getUserEmail(), userDto.getUserPassword());
+		
+		return ResponseEntity.ok().body(loginUser);
+	}
 }

@@ -1,7 +1,7 @@
 package com.hschoi.portfolio.user.service;
 
 import com.hschoi.portfolio.user.dto.UserDto;
-import com.hschoi.portfolio.user.entity.UserEntity;
+import com.hschoi.portfolio.user.entity.User;
 
 /**
  * <pre>
@@ -12,5 +12,6 @@ import com.hschoi.portfolio.user.entity.UserEntity;
  */
 public interface UserService {
 	public UserDto register(UserDto user);
-	public UserEntity findByUserId(String userId);
+	public User findByUserEmail(String userEmail);
+	public UserDto login(String userEmail, String password);
 }

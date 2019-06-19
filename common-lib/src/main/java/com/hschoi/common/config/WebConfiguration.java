@@ -13,14 +13,14 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
  * @date : 2019. 6. 18.
  * @author : hychoi
  */
+
 @Configuration
-public class WebConfiguration {
+public class WebConfiguration {	
 	
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
         PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver();
         resolver.setOneIndexedParameters(true);
-        resolver.setMaxPageSize(10);
+        resolver.setMaxPageSize(5);
         argumentResolvers.add(resolver);
-
     }
 }

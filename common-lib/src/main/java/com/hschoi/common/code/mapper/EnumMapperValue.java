@@ -15,11 +15,11 @@ import lombok.ToString;
 public class EnumMapperValue {
 
 	private String code;
-    private String title;
+    private String message;
 
     public EnumMapperValue(EnumMapperType enumMapperType) {
         code = enumMapperType.getCode();
-        title = enumMapperType.getTitle();
+        message = enumMapperType.getMessage();
     }
     
 }

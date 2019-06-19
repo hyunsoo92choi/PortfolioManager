@@ -8,5 +8,5 @@ package com.hschoi.common.code.mapper;
  */
 public interface EnumMapperType {
 	String getCode();
-    String getTitle();
+    String getMessage();
 }

@@ -7,10 +7,11 @@ import javax.validation.constraints.Size;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.hschoi.portfolio.user.entity.UserEntity;
+import com.hschoi.portfolio.user.entity.User;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -20,7 +21,8 @@ import lombok.ToString;
  * @date : 2019. 6. 18.
  * @author : hychoi
  */
-@Data
+@Getter
+@Setter
 @ToString
 @NoArgsConstructor
 public class UserDto {
@@ -50,7 +52,7 @@ public class UserDto {
 		return Objects.hash(userEmail);
 	}
 
-	public UserEntity toEntity(PasswordEncoder passwordEncoder) {
-		return new UserEntity(userEmail, passwordEncoder.encode(userPassword));
+	public User toEntity(PasswordEncoder passwordEncoder) {
+		return new User(userEmail, passwordEncoder.encode(userPassword));
 	}
 }
