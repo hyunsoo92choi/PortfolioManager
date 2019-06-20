@@ -17,7 +17,7 @@ spring:
 
 ---
 spring:
-  profiles: production
+  profiles: heroku
 
   datasource:
     url: jdbc:mysql://u0zbt18wwjva9e0v.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/f5m8n396mkjvnvlx
@@ -35,7 +35,7 @@ spring:
       hibernate.format_sql: true # 로그에 SQL 이쁘게 나오도록 하기
 
 server: 
-  port: 8090
+  port: ${PORT:8080}
   tomcat:
     uri-encoding: UTF-8
   servlet:
