@@ -33,3 +33,11 @@ spring:
       use-new-id-generator-mappings: false
     properties:
       hibernate.format_sql: true # 로그에 SQL 이쁘게 나오도록 하기
+
+server: 
+  port: 8090
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    session:
+      timeout: 800000000
