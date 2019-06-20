@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar common-lib/target/common-lib-0.0.1-SNAPSHOT.jar portfolio-api/target/*.war
+web: java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/*.war
