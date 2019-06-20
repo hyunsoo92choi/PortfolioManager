@@ -15,3 +15,21 @@ spring:
     properties:
       hibernate.format_sql: true # 로그에 SQL 이쁘게 나오도록 하기
 
+---
+spring:
+  profiles: production
+
+  datasource:
+    url: jdbc:mysql://u0zbt18wwjva9e0v.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/f5m8n396mkjvnvlx
+    username: exhv9py24f9jel0e
+    password: zvidfgd90d5wbzf7
+#    initialization-mode: never
+    
+  jpa:
+    hibernate:
+      ddl-auto: create # 시작 시 @Table 클래스대로 DB에 만들어버림. none으로 하면 안 만듬
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
+    properties:
+      hibernate.format_sql: true # 로그에 SQL 이쁘게 나오도록 하기
