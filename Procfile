@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -jar portfolio-api/target/portfolio-api-0.0.1-SNAPSHOT.war
+web: java $JAVA_OPTS -jar common-lib/target/dependency/common-lib-0.0.1-SNAPSHOT.jar $PORT portfolio-api/target/*.war
