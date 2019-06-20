@@ -1,4 +1,6 @@
 package com.hschoi.common.exception;
+
+
 /**
  * <pre>
  * com.hschoi.common.exception_InvalidAccessException.java

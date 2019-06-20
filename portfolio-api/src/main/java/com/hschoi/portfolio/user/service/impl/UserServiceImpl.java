@@ -6,7 +6,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.hschoi.common.exception.EntityAlreadyExistsException;
-import com.hschoi.common.exception.EntityNotFoundException;
 import com.hschoi.portfolio.user.dto.UserDto;
 import com.hschoi.portfolio.user.entity.User;
 import com.hschoi.portfolio.user.repository.UserRepository;
@@ -60,7 +59,9 @@ public class UserServiceImpl implements UserService {
 	 * @param user
 	 */ 	
 	public void verifyExist(UserDto user) {
-        
+		
+		log.info("회원 가입 유효성 체크 : {}", user);
+		
 		if (userRepository.findByUserEmail(user.getUserEmail()).isPresent()) {
             throw new EntityAlreadyExistsException("EXIST_ID");
         }
@@ -70,7 +71,7 @@ public class UserServiceImpl implements UserService {
 	public User findByUserEmail(String userEmail) {
 
 		return userRepository.findByUserEmail(userEmail)
-				.orElseThrow(() -> new EntityNotFoundException("NOT_EXIST_USER"));
+				.orElseThrow((null));
 	}
 	
 	@Override

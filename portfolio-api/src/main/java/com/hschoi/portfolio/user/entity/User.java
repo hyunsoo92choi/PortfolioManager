@@ -2,7 +2,6 @@ package com.hschoi.portfolio.user.entity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,7 +19,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.hschoi.common.exception.PasswordConfirmNotMatching;
 import com.hschoi.portfolio.projects.entity.Project;
 import com.hschoi.portfolio.user.dto.UserDto;
 
@@ -95,7 +93,7 @@ public class User {
     public boolean matchPassword(String inputPassword, PasswordEncoder passwordEncoder) {
         
     	if (!passwordEncoder.matches(inputPassword, userPassword)) {
-            throw new PasswordConfirmNotMatching("Password is not Matching");
+//            throw new PasswordConfirmNotMatching("Password is not Matching");
         }
         
     	return true;

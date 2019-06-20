@@ -6,7 +6,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.hschoi.portfolio.projects.entity.Project;
-import com.hschoi.portfolio.user.entity.User;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

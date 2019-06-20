@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.hschoi.portfolio.projects.entity.Project;
-import com.hschoi.portfolio.user.entity.User;
 
 /**
  * <pre>

@@ -10,7 +10,6 @@ import com.hschoi.portfolio.projects.dto.ProjectDto;
 import com.hschoi.portfolio.projects.entity.Project;
 import com.hschoi.portfolio.projects.repository.ProjectRepository;
 import com.hschoi.portfolio.projects.service.ProjectService;
-import com.hschoi.portfolio.user.entity.User;
 import com.hschoi.portfolio.user.repository.UserRepository;
 
 /**
@@ -50,7 +49,7 @@ public class ProjectServiceImpl implements ProjectService {
 	
 	public void verifyExist(ProjectDto project) {
         
-		User user = userRepository.findByUserEmail(project.getUserEmail()).orElse(null);
+//		User user = userRepository.findByUserEmail(project.getUserEmail()).orElse(null);
 		
 		// 동일한 프로젝트 중복생성 체크
 		if (projectRepository.findByProjectName(project.getProjectName()).isPresent()) {

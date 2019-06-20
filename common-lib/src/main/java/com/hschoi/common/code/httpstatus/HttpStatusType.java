@@ -1,5 +1,7 @@
 package com.hschoi.common.code.httpstatus;
 
+
+
 import com.hschoi.common.code.mapper.EnumMapperType;
 
 /**
