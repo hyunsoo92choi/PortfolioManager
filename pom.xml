@@ -141,6 +141,9 @@
 			    </executions>	
 				 <configuration>
                     <executable>true</executable>
+                    <sourcepath>
+                    ${project.parent.basedir}/portfolio-api/src/main/java
+                  </sourcepath>
                 </configuration> 			
 			</plugin>
 		</plugins>
