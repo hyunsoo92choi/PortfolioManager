@@ -75,7 +75,6 @@ public class Project {
 		this.projectDescription = projectDescription;
 		this.projectImg = projectImg;
 		this.projectUrl = projectUrl;
-//		this.user = user;
 	}
 	
 	public ProjectDto toProjectDto() {
