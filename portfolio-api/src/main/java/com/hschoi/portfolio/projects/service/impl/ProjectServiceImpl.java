@@ -4,13 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.hschoi.common.exception.EntityAlreadyExistsException;
-import com.hschoi.common.exception.EntityNotFoundException;
+import com.hschoi.common.exception.CustomException;
 import com.hschoi.portfolio.projects.dto.ProjectDto;
 import com.hschoi.portfolio.projects.entity.Project;
 import com.hschoi.portfolio.projects.repository.ProjectRepository;
 import com.hschoi.portfolio.projects.service.ProjectService;
 import com.hschoi.portfolio.user.repository.UserRepository;
+
+import static com.hschoi.common.code.httpstatus.HttpStatusType.PROJECT_NOT_FOUND;
 
 /**
  * <pre>
@@ -49,18 +50,16 @@ public class ProjectServiceImpl implements ProjectService {
 	
 	public void verifyExist(ProjectDto project) {
         
-//		User user = userRepository.findByUserEmail(project.getUserEmail()).orElse(null);
-		
 		// 동일한 프로젝트 중복생성 체크
 		if (projectRepository.findByProjectName(project.getProjectName()).isPresent()) {
-            throw new EntityAlreadyExistsException("EXIST_PROJECT");
+            throw new CustomException(PROJECT_NOT_FOUND);
         }
 	}
 
 	@Override
 	public Project findByProjectName(String projectName) {
 		return projectRepository.findByProjectName(projectName)
-				.orElseThrow(() -> new EntityNotFoundException("NOT_EXIST_PROJECT"));
+				.orElseThrow(() -> new CustomException(PROJECT_NOT_FOUND));
 	}
 
 }

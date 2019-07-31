@@ -14,14 +14,14 @@ import lombok.Getter;
  * @author : hychoi
  */
 @Getter
-public class ApiErrorResponseDTO {
+public class ApiErrorResponseDto {
 	private String message;
     private String code;
     private int status;
     private List<FieldError> errors = new ArrayList<>();
     
     @Builder
-    public ApiErrorResponseDTO(String message, String code, int status, List<FieldError> errors) {
+    public ApiErrorResponseDto(String message, String code, int status, List<FieldError> errors) {
     	this.message = message;
     	this.code = code;
     	this.status = status;

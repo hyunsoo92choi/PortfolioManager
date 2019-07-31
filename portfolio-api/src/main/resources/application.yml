@@ -1,23 +1,4 @@
-## 기본 개발 환경 configuration
 spring:
-  datasource:
-    url: jdbc:h2:~/homepage
-    username: sa
-    password: 
-#    initialization-mode: always # 이거 말고 밑의 hibernate.ddl-auto 를 create-drop 등으로 설정하여 하이버네이트로 초기화할 수도 있음
-
-  jpa:
-    hibernate:
-      ddl-auto: create-drop # 시작 시 @Table 클래스대로 DB에 만들어버림. none으로 하면 안 만듬
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      use-new-id-generator-mappings: false
-    properties:
-      hibernate.format_sql: true # 로그에 SQL 이쁘게 나오도록 하기
-
----
-spring:
-  profiles: heroku
 
   datasource:
     url: jdbc:mysql://u0zbt18wwjva9e0v.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/f5m8n396mkjvnvlx
@@ -33,3 +14,11 @@ spring:
       use-new-id-generator-mappings: false
     properties:
       hibernate.format_sql: true # 로그에 SQL 이쁘게 나오도록 하기
+
+server: 
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    session:
+      timeout: 800000000

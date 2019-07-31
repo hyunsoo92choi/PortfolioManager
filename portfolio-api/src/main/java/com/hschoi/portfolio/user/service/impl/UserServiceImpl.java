@@ -5,11 +5,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.hschoi.common.exception.EntityAlreadyExistsException;
+import com.hschoi.common.exception.CustomException;
 import com.hschoi.portfolio.user.dto.UserDto;
 import com.hschoi.portfolio.user.entity.User;
 import com.hschoi.portfolio.user.repository.UserRepository;
 import com.hschoi.portfolio.user.service.UserService;
+
+import static com.hschoi.common.code.httpstatus.HttpStatusType.USER_NOT_FOUND;;
 
 /**
  * <pre>
@@ -33,7 +35,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDto register(UserDto user) {
-		
 		
 		verifyExist(user);
         
@@ -63,7 +64,7 @@ public class UserServiceImpl implements UserService {
 		log.info("회원 가입 유효성 체크 : {}", user);
 		
 		if (userRepository.findByUserEmail(user.getUserEmail()).isPresent()) {
-            throw new EntityAlreadyExistsException("EXIST_ID");
+            throw new CustomException(USER_NOT_FOUND);
         }
 	}
 
