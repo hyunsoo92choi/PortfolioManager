@@ -11,7 +11,7 @@ import com.hschoi.portfolio.user.entity.User;
 import com.hschoi.portfolio.user.repository.UserRepository;
 import com.hschoi.portfolio.user.service.UserService;
 
-import static com.hschoi.common.code.httpstatus.HttpStatusType.USER_NOT_FOUND;;
+import static com.hschoi.common.code.httpstatus.HttpStatusType.USER_NOT_FOUND;
 
 /**
  * <pre>

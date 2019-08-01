@@ -19,6 +19,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.hschoi.common.entity.BaseEntity;
 import com.hschoi.portfolio.projects.entity.Project;
 import com.hschoi.portfolio.user.dto.UserDto;
 
@@ -37,7 +38,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="user")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User {
+public class User extends BaseEntity {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,14 +54,6 @@ public class User {
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Project> projects = new ArrayList<>();
-	
-	@CreatedDate
-    @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
-
-    @LastModifiedDate
-    @Column(name = "update_at", nullable = false, updatable = false)
-    private LocalDateTime updatedAt = LocalDateTime.now();
 	
 	public User(String userEmail, String userPassword) {
 		this.userEmail = userEmail;

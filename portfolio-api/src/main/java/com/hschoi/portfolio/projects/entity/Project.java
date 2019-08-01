@@ -1,7 +1,5 @@
 package com.hschoi.portfolio.projects.entity;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,9 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-
+import com.hschoi.common.entity.BaseEntity;
 import com.hschoi.portfolio.projects.dto.ProjectDto;
 import com.hschoi.portfolio.user.entity.User;
 
@@ -32,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table( name="project")
-public class Project {
+public class Project extends BaseEntity {
 	
 	@Id
 	@Column
@@ -60,14 +56,6 @@ public class Project {
 	@ManyToOne
     @JoinColumn(name = "user_email", nullable = false, updatable = false)
     private User user;
-	
-	@CreatedDate
-    @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
-
-    @LastModifiedDate
-    @Column(name = "update_at", nullable = false, updatable = false)
-    private LocalDateTime updatedAt;
 	
 	public Project(String projectName, String projectDescription, String projectImg, String projectUrl) {
 		
